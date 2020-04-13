@@ -10,12 +10,6 @@ RUN apt-get update -yq \
 	nodejs=12.16.2-1nodesource1 \
 	-yq
 
-RUN mkdir /workspace
-RUN mkdir /gradle-cache
-RUN chown gradle:gradle /workspace
-RUN chown gradle:gradle /gradle-cache
-USER gradle:gradle
-
 # clone app repo
 RUN git clone https://github.com/lokaler-kaufen/lokaler-kaufen-app.git /workspace
 
@@ -24,6 +18,6 @@ WORKDIR /workspace/frontend
 RUN npm ci
 
 # build & download all backend build dependencies
+RUN mkdir /gradle-cache
 WORKDIR /workspace/backend
-
 RUN gradle -i --no-daemon --gradle-user-home /gradle-cache clean build -x test 
