@@ -20,4 +20,4 @@ RUN npm ci
 # build & download all backend build dependencies
 RUN mkdir /gradle-cache
 WORKDIR /workspace/backend
-RUN gradle -i --no-daemon --gradle-user-home /gradle-cache clean build -x test 
+RUN gradle -i --no-daemon --gradle-user-home /gradle-cache clean build compileTestJava -x test 
