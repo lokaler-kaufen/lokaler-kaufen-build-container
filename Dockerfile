@@ -14,7 +14,9 @@ RUN apt-get update -yq \
 RUN git clone https://github.com/lokaler-kaufen/lokaler-kaufen-app.git /workspace
 
 # download all frontend build dependencies
+RUN mkdir /npm-cache
 WORKDIR /workspace/frontend
+RUN npm config set cache /npm-cache --global 
 RUN npm ci
 
 # build & download all backend build dependencies
