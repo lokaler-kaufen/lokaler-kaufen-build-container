@@ -19,4 +19,4 @@ RUN npm ci
 
 # build & download all backend build dependencies
 WORKDIR /workspace/backend
-RUN gradle clean build -x test
+RUN gradle -i --no-daemon --build-cache clean build -x test 
