@@ -11,7 +11,9 @@ RUN apt-get update -yq \
 	-yq
 
 RUN mkdir /workspace
+RUN mkdir /gradle-cache
 RUN chown gradle:gradle /workspace
+RUN chown gradle:gradle /gradle-cache
 USER gradle:gradle
 
 # clone app repo
@@ -23,4 +25,5 @@ RUN npm ci
 
 # build & download all backend build dependencies
 WORKDIR /workspace/backend
-RUN gradle -i --no-daemon --build-cache --stacktrace clean build -x test 
+
+RUN gradle -i --no-daemon --gradle-user-home /gradle-cache clean build -x test 
