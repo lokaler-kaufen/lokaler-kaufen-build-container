@@ -2,12 +2,13 @@ FROM gradle:jdk11
 
 LABEL maintainer="josef.fuchshuber@qaware.de"
 
-# install nodjs & npm
+# install nodjs & npm & graphicsmagick
 RUN apt-get update -yq \
     && curl -sL https://deb.nodesource.com/setup_12.x | bash \
     && apt-get install \
 	build-essential=12.4ubuntu1 \
 	nodejs=12.16.2-1nodesource1 \
+	graphicsmagick \
 	-yq
 
 # clone app repo
